@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Development Projects</title>
+  <style>
+    body {
+      background-color: #eaf4f4;
+      color: #333;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #2d3e50;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .project {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ccc;
+      margin: 20px;
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    .project h2 {
+      margin-top: 0;
+    }
+
+    .project p {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Development Projects</h1>
+  </header>
+
+  <div id="projects"></div>
+
+  <script>
+    // Use the GitHub API to fetch my repositories
+    fetch('https://api.github.com/users/pward1690/repos')
+      .then(response => response.json())
+      .then(repos => {
+        const projects = document.getElementById('projects');
+        repos.forEach(repo => {
+          const project = document.createElement('div');
+          project.classList.add('project');
+
+          const name = document.createElement('h2');
+          name.textContent = repo.name;
+          project.appendChild(name);
+
+          const description = document.createElement('p');
+          description.textContent = repo.description;
+          project.appendChild(description);
+
+          const link = document.createElement('a');
+          link.textContent = 'View on GitHub';
+          link.href = repo.html_url;
+          project.appendChild(link);
+
+          projects.appendChild(project);
+        });
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!-- Parrish Ward - Certificate of Deposit Calculator
+Made for myself and bank associates 05/02/2023 -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CD Calculator (First Financial Bank - Kankakee)</title>
+</head>
+<body>
+  <h1>Quick CD Calculator by Parrish Ward</h1>
+  <label for="principal">Principal:</label>
+  <input type="number" id="principal">
+  <br>
+  <label for="interestRate">Interest rate:</label>
+  <input type="number" id="interestRate">
+  <br>
+  <label for="term">Term (years):</label>
+  <input type="number" id="term">
+  <br>
+  <button onclick="calculate()">Calculate</button>
+  <br>
+  <label for="interest">Interest earned:</label>
+  <span id="interest"></span>
+  <br>
+  <label for="maturityValue">Maturity value:</label>
+  <span id="maturityValue"></span>
+  <script>
+    function calculate() {
+      let principal = Number(document.getElementById("principal").value);
+      let interestRate = Number(document.getElementById("interestRate").value);
+      let term = Number(document.getElementById("term").value);
+      let interest = principal * interestRate * term;
+      let maturityValue = principal + interest;
+      document.getElementById("interest").textContent = `$${interest.toFixed(2)}`;
+      document.getElementById("maturityValue").textContent = `$${maturityValue.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
